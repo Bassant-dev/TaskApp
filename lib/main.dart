@@ -7,12 +7,16 @@ import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/cubit.d
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/views/login_screen.dart';
 
+import 'core/cache_helper.dart';
 
 
-void main() {
+
+void main()  async{
 
   Bloc.observer = MyBlocObserver();
-  //DioHelper.Init_dio();
+ // DioHelper.Init_dio();
+  await CacheHelper.init();
+
   runApp(const MyApp());
 }
 
