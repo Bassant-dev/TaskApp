@@ -45,4 +45,7 @@ class CubitTask extends Cubit<TaskStates> {
     ischeck=value;
     emit(CheckSuccess());
   }
+  Future Logout()async{
+
+  }
 }

@@ -31,7 +31,7 @@ class LoginScreenBody extends StatelessWidget {
               child: Column(
 
                 children: [
-                  Text('Welcome Back!', style: GoogleFonts.roboto(fontSize: 24)),
+                  Text('Welcome Back!', style: GoogleFonts.roboto(fontSize: 24,fontWeight: FontWeight.bold)),
                   SizedBox(height: 20.h),
                   Text(
                     'Login to access your assigned tasks and personal overview',
@@ -68,8 +68,8 @@ class LoginScreenBody extends StatelessWidget {
                   SizedBox(height: 20.h),
                   Row(
                     children: [
-                      Checkbox(value: true, onChanged: (value) {
-                        CubitTask.get(context).ischeck;
+                      Checkbox(value: CubitTask.get(context).ischeck, onChanged: (value) {
+                        CubitTask.get(context).checkis(value);
                       }),
                       SizedBox(width: 8.h),
                       Text('Keep me logged in', style: GoogleFonts.roboto(fontSize: 16)),
