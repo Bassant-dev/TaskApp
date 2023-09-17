@@ -6,6 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_errasoft/core/api.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.dart';
 
+import '../../../../core/cache_helper.dart';
+import '../../../../core/model/model_login.dart';
+
 
 class CubitTask extends Cubit<TaskStates> {
   CubitTask() : super(LoginInitialState());
@@ -15,42 +18,50 @@ class CubitTask extends Cubit<TaskStates> {
 
   static CubitTask get(context) => BlocProvider.of<CubitTask>(context);
 
+  LoginModel? loginModel;
+  bool ischeck = false;
+  void checkis(value) {
+    ischeck = value;
+    emit(CheckSuccess());
+  }
   void login(String email, String password) async {
-
     emit(LoginLoadingState());
 
-    try {
-      final response = await dio.post(
+
+    dio.post(
+
         ApiConst.login,
         data: {
           'email': email,
           'password': password,
+
         },
+
         options: Options(
           headers: {
-            'Content-Type': 'application/json',
+            'Accept': 'application/json',
           },
         ),
-      );
 
-      if (response.statusCode == 200) {
-        emit(LoginSuccessState());
-
-
-      } else {
-        emit(LoginErrorState());
-      }
-    } catch (e) {
-      emit(LoginErrorState());
-    }
-  }
-  bool ischeck=false;
- void checkis(value){
-    ischeck=value;
-    emit(CheckSuccess());
-  }
-  void Logout(){
+      ).then((value) {
+        print(value.data['data']['token']);
+        print(value);
+        CacheHelper.saveData(key: 'token', value:value.data['data']['token']);
+        print("bassant");
+        print(CacheHelper.getData(key: "token"));
+        print("bassant");
+        emit(LoginSuccessState(''));
+      }).catchError((error) {
+        print(error.toString());
+        if (Dio is DioException) {
+          print("mostafa");
+          emit(LoginErrorState());
+        }
+      });
 
 
-  }
-}
+
+
+
+  }}
+

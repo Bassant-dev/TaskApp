@@ -23,7 +23,7 @@ class CacheHelper
     return sharedPreferences!.get(key);
   }
 
-  static  saveData({
+  static  dynamic saveData({
     required String key,
     required dynamic value,
   }) async {

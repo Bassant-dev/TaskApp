@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasks_app_errasoft/screens/Home_Screen/Home_screen.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.dart';
 
 import '../../../../../core/component/component.dart';
+import '../../../../core/cache_helper.dart';
 import '../../view_model/cubit/cubit.dart';
 
 class LoginScreenBody extends StatelessWidget {
@@ -16,16 +18,22 @@ class LoginScreenBody extends StatelessWidget {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
+  Future<void> storeTokenInSharedPreferences(String token) async {
+    //SharedPreferences prefs = await SharedPreferences.getInstance();
+    CacheHelper.saveData(key: "token", value: token);
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CubitTask, TaskStates>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
+          final token = state.token;
+          // storeTokenInSharedPreferences(token!);
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Home_screen(), // Replace 'Home_screen' with the actual screen you want to navigate to
+              builder: (context) => Home_screen(),
             ),
           );
         }
