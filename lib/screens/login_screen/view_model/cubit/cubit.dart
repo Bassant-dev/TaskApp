@@ -29,14 +29,11 @@ class CubitTask extends Cubit<TaskStates> {
 
 
     dio.post(
-
         ApiConst.login,
         data: {
           'email': email,
           'password': password,
-
         },
-
         options: Options(
           headers: {
             'Accept': 'application/json',
