@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_errasoft/core/api.dart';
+import 'package:tasks_app_errasoft/core/dio_helper.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.dart';
 
 import '../../../../core/cache_helper.dart';
@@ -46,6 +47,7 @@ class CubitTask extends Cubit<TaskStates> {
         CacheHelper.saveData(key: 'token', value:value.data['data']['token']);
         print("bassant");
         print(CacheHelper.getData(key: "token"));
+
         print("bassant");
         emit(LoginSuccessState(''));
       }).catchError((error) {
@@ -60,5 +62,24 @@ class CubitTask extends Cubit<TaskStates> {
 
 
 
-  }}
+  }
+  void logout()async {
+    try {
+      await DioHelper.postData(url: "/auth/logout", data: {}).then((value) {
+        print("basanttttt");
+
+emit(LogoutSuccessful());
+      });
+    } catch (e) {
+
+
+    }
+  }
+}
+
+
+
+
+
+
 

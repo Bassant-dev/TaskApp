@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tasks_app_errasoft/core/cache_helper.dart';
 
 class DioHelper {
   static late Dio dio;
@@ -29,7 +30,7 @@ class DioHelper {
         required Map<String, dynamic> data,
         String? token}) async {
     dio.options.headers = {
-      'Authorization': "Bearer $token",
+      'Authorization': "Bearer ${CacheHelper.getData(key:'token')}",
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
