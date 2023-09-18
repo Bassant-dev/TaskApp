@@ -30,6 +30,7 @@ class CubitTask extends Cubit<TaskStates> {
 
 
     dio.post(
+
         ApiConst.login,
         data: {
           'email': email,
@@ -53,7 +54,6 @@ class CubitTask extends Cubit<TaskStates> {
       }).catchError((error) {
         print(error.toString());
         if (Dio is DioException) {
-          print("mostafa");
           emit(LoginErrorState());
         }
       });
@@ -65,14 +65,15 @@ class CubitTask extends Cubit<TaskStates> {
   }
   void logout()async {
     try {
+      print("basanttttt");
+      print(CacheHelper.getData(key: 'token'));
       await DioHelper.postData(url: "/auth/logout", data: {}).then((value) {
         print("basanttttt");
-
-emit(LogoutSuccessful());
+     emit(LogoutSuccessful());
       });
     } catch (e) {
-
-
+print(e.toString());
+      emit(Logoutfail());
     }
   }
 }

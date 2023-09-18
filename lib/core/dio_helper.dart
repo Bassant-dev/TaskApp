@@ -5,7 +5,7 @@ class DioHelper {
   static late Dio dio;
   static Init_dio() {
     dio = Dio(BaseOptions(
-      baseUrl: 'https://tasksapp.integration25.com/api/',
+      baseUrl: 'https://tasksapp.integration25.com/api',
       receiveDataWhenStatusError: true,
     ));
   }
@@ -34,7 +34,7 @@ class DioHelper {
         String? token
       }) async {
     dio.options.headers = {
-      'Authorization': "Bearer ${CacheHelper.getData(key:'token')}",
+      'Authorization': "Bearer $token",
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };

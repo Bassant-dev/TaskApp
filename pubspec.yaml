@@ -45,6 +45,7 @@ dependencies:
   percent_indicator: ^4.2.3
   table_calendar: ^3.0.9
   calendar_timeline: ^1.1.2
+  fluttertoast: ^8.2.2
 
 
 dev_dependencies:

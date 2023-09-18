@@ -27,7 +27,13 @@ class UpdateUserDetailsBody extends StatelessWidget {
     print(CacheHelper.getData(key: "token"));
     return BlocConsumer< CubitUpdateUserDetails, UpdateUserDetailsStates >(
       listener: (context, state) {
-
+        if(state is UpdateUserDetailsSuccessState){
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Upadate Successfully"),
+              duration: Duration(seconds: 2), // Duration for which the toast will be displayed
+            ),
+          );}
       },
       builder: (context, state) {
         return Scaffold(
@@ -88,7 +94,7 @@ class UpdateUserDetailsBody extends StatelessWidget {
                     ),
                     SizedBox(height: 20.h),
                     defaultFormField(
-                      controller: nameController,
+                      controller: passwordController,
                       type: TextInputType.emailAddress,
                       validate: (String? value) {
                         if (value!.isEmpty) {
@@ -149,6 +155,11 @@ class UpdateUserDetailsBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () async {
+                        CubitUpdateUserDetails.get(context).updateuserdetails(7,
+                            name: nameController.text,phone: phoneController.text,
+                            email: emailController.text,password: passwordController.text,
+
+                        );
 
                       },
                       style: ElevatedButton.styleFrom(

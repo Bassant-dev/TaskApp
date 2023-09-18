@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tasks_app_errasoft/core/bloc_observer.dart';
 import 'package:tasks_app_errasoft/screens/Home_Screen/Home_screen.dart';
 import 'package:tasks_app_errasoft/screens/Home_Screen/drawer.dart';
@@ -25,6 +26,7 @@ void main()  async{
   await CacheHelper.init();
 
   runApp(const MyApp());
+  Fluttertoast.showToast(msg: "Initialization successful");
 }
 
 class MyApp extends StatelessWidget {

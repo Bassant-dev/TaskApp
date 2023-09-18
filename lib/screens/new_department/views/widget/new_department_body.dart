@@ -25,6 +25,15 @@ class NewDepBody extends StatelessWidget {
     return BlocConsumer<CubitDep, DepStates>(
       listener: (context, state) {
 
+      if(state is DepSuccessState){
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Create Successfully"),
+            duration: Duration(seconds: 2), // Duration for which the toast will be displayed
+          ),
+        );}
+
+
       },
       builder: (context, state) {
         return Scaffold(

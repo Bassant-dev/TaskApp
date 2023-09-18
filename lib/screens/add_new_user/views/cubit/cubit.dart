@@ -10,9 +10,6 @@ import 'package:tasks_app_errasoft/core/cache_helper.dart';
 import 'package:tasks_app_errasoft/core/dio_helper.dart';
 import 'package:tasks_app_errasoft/core/model/model_login.dart';
 import 'package:tasks_app_errasoft/screens/add_new_user/views/cubit/state.dart';
-import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.dart';
-import 'package:tasks_app_errasoft/screens/new_department/view_model/cubit/states.dart';
-
 
 class CubitNewUser extends Cubit< AddNewUserStates > {
   CubitNewUser() : super( InitialStateAdd());
@@ -26,26 +23,38 @@ class CubitNewUser extends Cubit< AddNewUserStates > {
   Future<void> addUser({
     required String name,
     required String email,
-    required String phone,
+    required int phone,
     required String password,
     required String choosetype,
 
   }) async {
       emit(AddNewUserLoadingState());
       DioHelper.postData(
-        token: CacheHelper.getData(key: "token"),
-          url: "user/store",
+        token: "${CacheHelper.getData(key:'token')}",
+           url: "/user/store",
           data: {
-        'name': "name",
-        'email':"email",
-        'phone': "phone",
-        'password': "password",
-        'user_type':'1'
+        'name': name,
+        'email':email,
+        'phone':phone,
+        'password': password,
+        'user_type':1,
+
       }).then((value){
         print(value.data);
+        print("success");
         emit(AddNewUserSuccessState());
       }).catchError((errror){
         emit(AddNewUserErrorState ());
+        if(errror is DioException){
+          print("nn");
+        }
+        if(errror is DioError && errror.response?.statusCode==422){
+          final e = errror.response?.data;
+          final m = e["message"];
+          print(e);
+          print(m);
+        }
+        print(errror.toString());
         print("errorrrrr");
       });
 

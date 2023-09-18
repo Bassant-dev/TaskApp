@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/cubit.dart';
+import 'package:tasks_app_errasoft/screens/login_screen/views/login_screen.dart';
 
 import '../add_new_user/views_model/add_new_user.dart';
 import '../login_screen/view_model/cubit/states.dart';
@@ -26,7 +27,17 @@ class Drawer_body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer< CubitTask,TaskStates>(
-      listener: (context, state){},
+      listener: (context, state){
+        if(state is LogoutSuccessful ){
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Login(), // Replace 'Home_screen' with the actual screen you want to navigate to
+            ),
+          );
+        }
+      },
       builder: (context, state){
         return ListView(
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,6 +32,15 @@ class AddNewUserBody extends StatelessWidget {
     print(CacheHelper.getData(key: "token"));
     return BlocConsumer< CubitNewUser, AddNewUserStates>(
       listener: (context, state) {
+        if(state is AddNewUserSuccessState){
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Create Successfully"),
+              duration: Duration(seconds: 2), // Duration for which the toast will be displayed
+            ),
+          );
+
+        }
 
       },
       builder: (context, state) {
@@ -150,13 +160,13 @@ class AddNewUserBody extends StatelessWidget {
                         final String password = passwordController.text;
 
                         if (formKey.currentState!.validate()) {
-
+                         print("bbbbbb");
                           CubitNewUser.get(context).addUser(
                             name: name,
                             email: email,
-                            phone: phone,
+                            phone: 00,
                             password: password,
-                            choosetype: '2'
+                            choosetype: '1'
 
                           );
                         }

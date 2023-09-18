@@ -22,8 +22,29 @@ class CubitUpdateUserDetails extends Cubit<UpdateUserDetailsStates > {
   void selectOption(String option) {
     emit(RadioCubitSelected(option));
   }
-void updateuserdetails(){
+  Future<void> updateuserdetails(int ?userId,{
+    required String name,
+    required String email,
+     required String password,
+    required String phone,
 
+  })async{
+emit(LoadingStateUpdateUserDetails());
+DioHelper.postData(
+    url: "/user/update/$userId",
+    data: {
+      'name':name,
+      'email':email,
+      'password':password,
+      'phone':phone,
+      'department_id':1,
+      'user_status':0,
+      'user_type':1,
+    }).then((value) {
+  emit(UpdateUserDetailsSuccessState());
+}).catchError((errror){
+  emit(UpdateUserDetailsErrorState());
+});
 }
 
 

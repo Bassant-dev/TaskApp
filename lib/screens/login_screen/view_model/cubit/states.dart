@@ -15,3 +15,4 @@ class CheckSuccess extends  TaskStates
 {}
 class LogoutLoadingState extends  TaskStates{}
 class LogoutSuccessful extends  TaskStates{}
+class Logoutfail extends  TaskStates{}

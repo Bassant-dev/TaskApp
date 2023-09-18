@@ -31,6 +31,13 @@ class  UpdateUserDepBody extends StatelessWidget {
     print(CacheHelper.getData(key: "token"));
     return BlocConsumer<CubitUpdateDep,  UpdateDepStates>(
       listener: (context, state) {
+      if(state is UpdateDepSuccessState){
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Upadate Successfully"),
+            duration: Duration(seconds: 2), // Duration for which the toast will be displayed
+          ),
+        );}
 
       },
       builder: (context, state) {
@@ -69,7 +76,7 @@ class  UpdateUserDepBody extends StatelessWidget {
                     SizedBox(height: 20.h),
                     ElevatedButton(
                       onPressed: () async {
-                        CubitUpdateDep.get(context).updateDepartment(151);
+                        CubitUpdateDep.get(context).updateDepartment(94);
                       },
                       style: ElevatedButton.styleFrom(
                         primary: HexColor('#5A55CA'),
