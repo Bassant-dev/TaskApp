@@ -26,7 +26,7 @@ void main()  async{
   await CacheHelper.init();
 
   runApp(const MyApp());
-  Fluttertoast.showToast(msg: "Initialization successful");
+
 }
 
 class MyApp extends StatelessWidget {
