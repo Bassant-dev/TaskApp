@@ -67,10 +67,9 @@ class CubitTask extends Cubit<TaskStates> {
     try {
       print("basanttttt");
       print(CacheHelper.getData(key: 'token'));
-      await DioHelper.postData(url: "/auth/logout", data: {}).then((value) {
-        print("basanttttt");
-     emit(LogoutSuccessful());
-      });
+
+      await DioHelper.postData(url: "/auth/logout", data: {},token:CacheHelper.getData(key: 'token') ,);
+      emit(LogoutSuccessful());
     } catch (e) {
 print(e.toString());
       emit(Logoutfail());

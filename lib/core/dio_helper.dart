@@ -18,7 +18,7 @@ class DioHelper {
       }) async {
 
     dio.options.headers = {
-      'Authorization': "Bearer $token",
+      'Authorization': "Bearer$token",
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
@@ -34,7 +34,7 @@ class DioHelper {
         String? token
       }) async {
     dio.options.headers = {
-      'Authorization': "Bearer $token",
+      'Authorization': "Bearer$token",
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };

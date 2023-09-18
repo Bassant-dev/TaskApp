@@ -157,7 +157,7 @@ class UpdateUserDetailsBody extends StatelessWidget {
                       onPressed: () async {
                         CubitUpdateUserDetails.get(context).updateuserdetails(7,
                             name: nameController.text,phone: phoneController.text,
-                            email: emailController.text,password: passwordController.text,
+                            email: emailController.text,userStatus: '0',userType:'2'
 
                         );
 

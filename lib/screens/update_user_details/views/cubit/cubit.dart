@@ -25,8 +25,9 @@ class CubitUpdateUserDetails extends Cubit<UpdateUserDetailsStates > {
   Future<void> updateuserdetails(int ?userId,{
     required String name,
     required String email,
-     required String password,
     required String phone,
+    required String userType,
+    required String userStatus,
 
   })async{
 emit(LoadingStateUpdateUserDetails());
@@ -35,11 +36,9 @@ DioHelper.postData(
     data: {
       'name':name,
       'email':email,
-      'password':password,
       'phone':phone,
-      'department_id':1,
-      'user_status':0,
-      'user_type':1,
+      'user_status':userStatus,
+      'user_type':userType,
     }).then((value) {
   emit(UpdateUserDetailsSuccessState());
 }).catchError((errror){
