@@ -31,29 +31,27 @@ class CubitNewUser extends Cubit< AddNewUserStates > {
     required String choosetype,
 
   }) async {
-    try {
       emit(AddNewUserLoadingState());
-      final apiUrl = ApiConst.newuser;
-      final userData = {
-        'name': name,
-        'email':email,
-        'phone': phone,
-        'password': password,
+      DioHelper.postData(
+        token: CacheHelper.getData(key: "token"),
+          url: "user/store",
+          data: {
+        'name': "name",
+        'email':"email",
+        'phone': "phone",
+        'password': "password",
         'user_type':'1'
-
-      };
-      final response = await dio.post(apiUrl, data: userData);
-      emit(AddNewUserSuccessState());
-      if (response.statusCode == 201) {
+      }).then((value){
+        print(value.data);
         emit(AddNewUserSuccessState());
-      } else {
+      }).catchError((errror){
         emit(AddNewUserErrorState ());
         print("errorrrrr");
-      }
-    } catch (e) {
-      print(e.toString());
-      emit(AddNewUserErrorState ());
-    }
+      });
+
+
+
+
   }
 
 

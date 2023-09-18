@@ -69,7 +69,7 @@ class  UpdateUserDepBody extends StatelessWidget {
                     SizedBox(height: 20.h),
                     ElevatedButton(
                       onPressed: () async {
-
+                        CubitUpdateDep.get(context).updateDepartment(151);
                       },
                       style: ElevatedButton.styleFrom(
                         primary: HexColor('#5A55CA'),

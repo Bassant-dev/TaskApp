@@ -22,7 +22,9 @@ class CubitUpdateUserDetails extends Cubit<UpdateUserDetailsStates > {
   void selectOption(String option) {
     emit(RadioCubitSelected(option));
   }
+void updateuserdetails(){
 
+}
 
 
 

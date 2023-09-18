@@ -23,7 +23,6 @@ class CubitDep extends Cubit< DepStates > {
     emit(LoadingStateDep());
      DioHelper.postData(
           url: 'department/store',
-          token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3Rhc2tzYXBwLmludGVncmF0aW9uMjUuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNjk0OTUzMDY3LCJleHAiOjE2OTQ5NTY2NjcsIm5iZiI6MTY5NDk1MzA2NywianRpIjoiV0gxUnBIazAwbTYxbGtTRCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.HtZUUsHVfniNTDn41ClM0ymhg3Fv-aF8Aok6eehaveA",
           data: {
             'name':name,
           },

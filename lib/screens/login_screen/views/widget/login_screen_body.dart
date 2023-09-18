@@ -33,7 +33,7 @@ class LoginScreenBody extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Home_screen(),
+              builder: (context) => Home_screen (),
             ),
           );
         }
@@ -94,6 +94,8 @@ class LoginScreenBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                        emailController.text = "hssggs@admin.com";
+                        passwordController.text = "password";
                         if (formKey.currentState!.validate()) {
                           isvisible = true;
                           CubitTask.get(context).login(emailController.text, passwordController.text);

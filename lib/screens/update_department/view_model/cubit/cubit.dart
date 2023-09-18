@@ -18,7 +18,17 @@ class CubitUpdateDep extends Cubit<UpdateDepStates > {
   CubitUpdateDep() : super( InitialStateUpdateDep());
   static CubitUpdateDep get(context) => BlocProvider.of< CubitUpdateDep>(context);
 
-
-
+  void updateDepartment(int ?departmentId){
+    emit(LoadingStateUpdateDep());
+    DioHelper.postData(
+        url: "/department/update/$departmentId",
+        data: {
+      'name':'name',
+    }).then((value) {
+      emit(UpdateDepSuccessState());
+    }).catchError((errror){
+      emit(UpdateDepErrorState());
+    });
+  }
 
 }

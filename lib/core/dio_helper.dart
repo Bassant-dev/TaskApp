@@ -11,9 +11,11 @@ class DioHelper {
   }
 
   static Future<Response> getData(
-      {required String url,
+      {
+        required String url,
         Map<String, dynamic>? query,
-        String? token}) async {
+        String? token
+      }) async {
 
     dio.options.headers = {
       'Authorization': "Bearer $token",
@@ -23,12 +25,14 @@ class DioHelper {
     return await dio.get(url, queryParameters: query);
   }
 
+
+
   static Future<Response> postData(
       {required String url,
-        Options ? options,
         Map<String, dynamic>? query,
         required Map<String, dynamic> data,
-        String? token}) async {
+        String? token
+      }) async {
     dio.options.headers = {
       'Authorization': "Bearer ${CacheHelper.getData(key:'token')}",
       'Content-Type': 'application/json',
