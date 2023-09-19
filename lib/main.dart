@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tasks_app_errasoft/core/bloc_observer.dart';
 import 'package:tasks_app_errasoft/screens/Home_Screen/Home_screen.dart';
 import 'package:tasks_app_errasoft/screens/Home_Screen/drawer.dart';
+import 'package:tasks_app_errasoft/screens/addNewTask/view/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/add_new_user/views/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.dart';
@@ -38,9 +39,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context)=> CubitTask()),
         BlocProvider(create: (context)=> CubitDep()),
-        BlocProvider(create: (context)=> CubitNewUser()),
+        BlocProvider(create: (context)=> CubitNewUser()..getAllUsers()),
         BlocProvider(create: (context)=>  CubitUpdateDep()),
-        BlocProvider(create: (context)=> CubitUpdateUserDetails())
+        BlocProvider(create: (context)=> CubitUpdateUserDetails()),
+        BlocProvider(create: (context)=> CubitAddNewTask()),
 
 
       ],

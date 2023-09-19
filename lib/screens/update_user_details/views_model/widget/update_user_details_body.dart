@@ -4,16 +4,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tasks_app_errasoft/core/model/model_login.dart';
 import 'package:tasks_app_errasoft/screens/new_department/view_model/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/new_department/view_model/cubit/states.dart';
 
 import '../../../../../core/component/component.dart';
 import '../../../../core/cache_helper.dart';
+import '../../../add_new_user/views/cubit/cubit.dart';
 import '../../views/cubit/cubit.dart';
 import '../../views/cubit/state.dart';
 
 class UpdateUserDetailsBody extends StatelessWidget {
-  UpdateUserDetailsBody({Key? key}) : super(key: key);
+  UpdateUserDetailsBody({Key? key, required this.id}) : super(key: key);
+
 
   bool isvisible = false;
   var nameController = TextEditingController();
@@ -22,8 +25,11 @@ class UpdateUserDetailsBody extends StatelessWidget {
   var phoneController = TextEditingController();
   var departmentController = TextEditingController();
   var formKey = GlobalKey<FormState>();
+  //final AllUserModel  user;
+  int id;
   @override
   Widget build(BuildContext context) {
+print(id);
     print(CacheHelper.getData(key: "token"));
     return BlocConsumer< CubitUpdateUserDetails, UpdateUserDetailsStates >(
       listener: (context, state) {
@@ -155,7 +161,7 @@ class UpdateUserDetailsBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        CubitUpdateUserDetails.get(context).updateuserdetails(7,
+                        CubitUpdateUserDetails.get(context).updateuserdetails(id,
                             name: nameController.text,phone: phoneController.text,
                             email: emailController.text,userStatus: '0',userType:'2'
 

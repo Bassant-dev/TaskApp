@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tasks_app_errasoft/core/model/model_login.dart';
+import 'package:tasks_app_errasoft/screens/addNewTask/view_model/widget/addnewtaskbody.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/views/login_screen.dart';
 
+import '../addNewTask/view_model/addnewtask.dart';
 import '../add_new_user/views_model/add_new_user.dart';
+import '../add_new_user/views_model/widget/getallusers.dart';
 import '../login_screen/view_model/cubit/states.dart';
 import '../new_department/views/new_department.dart';
 import '../update_department/views/update_dep_screen.dart';
@@ -87,13 +91,14 @@ class Drawer_body extends StatelessWidget {
               },
 
             ),
+
             ListTile(
-              title: const Text('Update User Details!'),
+              title: const Text('get all users'),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>  UpdateUserDetailsBody(), // Replace 'Home_screen' with the actual screen you want to navigate to
+                    builder: (context) =>  GetAllUsersView(), // Replace 'Home_screen' with the actual screen you want to navigate to
                   ),
                 );
 
@@ -101,6 +106,23 @@ class Drawer_body extends StatelessWidget {
               },
 
             ),
+            ListTile(
+              title: const Text('Add New Task'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        AddNewTaskBody(),
+                  ),
+                );
+
+
+              },
+
+            ),
+
+
             ListTile(
               title: const Text('Logout'),
               onTap: () {

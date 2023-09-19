@@ -164,7 +164,7 @@ class AddNewUserBody extends StatelessWidget {
                           CubitNewUser.get(context).addUser(
                             name: name,
                             email: email,
-                            phone: 00,
+                            phone: phone,
                             password: password,
                             choosetype: '1'
 

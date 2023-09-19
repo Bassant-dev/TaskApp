@@ -12,6 +12,7 @@ Widget defaultFormField({
   void Function(String)? onsubmit,
   required String label,
   IconData? prifex,
+  int ? maxline,
   void Function()? ontap,
   void Function(String)? onChange,
   bool isclickable=true,
@@ -31,6 +32,7 @@ Widget defaultFormField({
   keyboardType: TextInputType.text,
   onFieldSubmitted: onsubmit,
   cursorColor: Colors.black,
+  maxLines: maxline,
 
   decoration: InputDecoration(
     fillColor: Colors.black,

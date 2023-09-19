@@ -1,5 +1,6 @@
 
 
+
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,8 @@ import 'package:tasks_app_errasoft/core/cache_helper.dart';
 import 'package:tasks_app_errasoft/core/dio_helper.dart';
 import 'package:tasks_app_errasoft/core/model/model_login.dart';
 import 'package:tasks_app_errasoft/screens/add_new_user/views/cubit/state.dart';
+
+import '../../../../core/model/model_login.dart';
 
 class CubitNewUser extends Cubit< AddNewUserStates > {
   CubitNewUser() : super( InitialStateAdd());
@@ -23,7 +26,7 @@ class CubitNewUser extends Cubit< AddNewUserStates > {
   Future<void> addUser({
     required String name,
     required String email,
-    required int phone,
+    required String phone,
     required String password,
     required String choosetype,
 
@@ -63,6 +66,28 @@ class CubitNewUser extends Cubit< AddNewUserStates > {
 
   }
 
+
+
+  List<dynamic>users=[];
+  Future getAllUsers()async
+  {
+    users=[];
+    emit(GetAllUserStateLoading());
+    try {
+      Response  data=await  DioHelper.getData(url: '/user/index',token: CacheHelper.getData(key:'token'));
+      data.data['data'].forEach((item){
+        users.add(AllUserModel.fromJson(item));
+      });
+      print(users.length);
+      print("b + m");
+      emit(GetAllUserStateSuccess());
+
+    } on Exception catch (e) {
+      emit(GetAllUserStateFail());
+
+    }
+
+  }
 
 
 }

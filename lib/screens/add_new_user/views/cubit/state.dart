@@ -12,3 +12,9 @@ class RadioCubitSelectedadd extends AddNewUserStates {
 
   RadioCubitSelectedadd(this.selectedOption);
 }
+class GetAllUserStateLoading extends  AddNewUserStates
+{}
+class GetAllUserStateSuccess extends  AddNewUserStates
+{}
+class  GetAllUserStateFail extends  AddNewUserStates
+{}
