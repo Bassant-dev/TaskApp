@@ -23,10 +23,19 @@ class CubitUpdateDep extends Cubit<UpdateDepStates > {
     DioHelper.postData(
         url: "/department/update/$departmentId",
         data: {
-      'name':'name',
-    }).then((value) {
+      'name':'mostafabahr',
+       },
+    token: CacheHelper.getData(key: "token"),
+    ).then((value) {
+      print(value);
       emit(UpdateDepSuccessState());
     }).catchError((errror){
+      if(errror is DioError && errror.response?.statusCode==401){
+        final e = errror.response?.data;
+        final m = e["message"];
+        print(e);
+        print(m);
+      }
       emit(UpdateDepErrorState());
     });
   }

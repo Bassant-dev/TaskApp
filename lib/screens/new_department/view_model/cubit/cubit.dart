@@ -22,14 +22,21 @@ class CubitDep extends Cubit< DepStates > {
   void NameDep( String name,) async {
     emit(LoadingStateDep());
      DioHelper.postData(
-          url: 'department/store',
+          url: '/department/store',
           data: {
             'name':name,
           },
+       token: CacheHelper.getData(key: "token"),
       ).then((value){
         print(value);
         emit(DepSuccessState());
     }).catchError((error){
+       if(error is DioError && error.response?.statusCode==401){
+         final e = error.response?.data;
+         final m = e["message"];
+         print(e);
+         print(m);
+       }
       print(error.toString());
       if(Dio is DioException){
         emit(DepErrorState());

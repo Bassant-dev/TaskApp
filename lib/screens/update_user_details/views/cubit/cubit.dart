@@ -33,6 +33,7 @@ class CubitUpdateUserDetails extends Cubit<UpdateUserDetailsStates > {
 emit(LoadingStateUpdateUserDetails());
 DioHelper.postData(
     url: "/user/update/$userId",
+    token: CacheHelper.getData(key: "token"),
     data: {
       'name':name,
       'email':email,

@@ -25,6 +25,7 @@ class LoginScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(CacheHelper.getData(key: "token"));
     return BlocConsumer<CubitTask, TaskStates>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
@@ -33,7 +34,7 @@ class LoginScreenBody extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Home_screen (),
+              builder: (context) => const Home_screen (),
             ),
           );
         }
@@ -94,7 +95,7 @@ class LoginScreenBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        emailController.text = "hssggs@admin.com";
+                        emailController.text = "a@a.com";
                         passwordController.text = "password";
                         if (formKey.currentState!.validate()) {
                           isvisible = true;
@@ -106,7 +107,7 @@ class LoginScreenBody extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(0),
                         ),
-                        minimumSize: Size(312, 48),
+                        minimumSize: const Size(312, 48),
                       ),
                       child: Text(
                         'LOGIN',
