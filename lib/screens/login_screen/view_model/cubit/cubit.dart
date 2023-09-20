@@ -7,6 +7,7 @@ import 'package:tasks_app_errasoft/core/api.dart';
 import 'package:tasks_app_errasoft/core/dio_helper.dart';
 import 'package:tasks_app_errasoft/screens/Home_Screen/Home_screen.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.dart';
+import 'package:tasks_app_errasoft/screens/new_department/views/widget/get_all_department.dart';
 
 import '../../../../core/cache_helper.dart';
 import '../../../../core/model/model_login.dart';
@@ -56,7 +57,7 @@ class CubitTask extends Cubit<TaskStates> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => NewDepBody(),
+            builder: (context) => GetAllDepView(),
           ),
         );
       }

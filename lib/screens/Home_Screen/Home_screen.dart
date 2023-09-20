@@ -44,7 +44,7 @@ class Home_screen extends StatelessWidget {
               children: [
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black, // Change the button color
+                    primary: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -58,7 +58,7 @@ class Home_screen extends StatelessWidget {
                 ),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black, // Change the button color
+                    primary: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -111,8 +111,8 @@ class Home_screen extends StatelessWidget {
           itemBuilder: (context, index) {
             return EmployeeCard(
               title: 'ADMIN',
-              userEmail: 'admin@example.com',
-              userPassword: 'admin123',
+              userEmail: '',
+              userPassword: '',
             );
           },
         ),
