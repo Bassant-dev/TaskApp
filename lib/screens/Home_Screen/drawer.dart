@@ -7,6 +7,7 @@ import 'package:tasks_app_errasoft/screens/login_screen/views/login_screen.dart'
 import '../addNewTask/view_model/addnewtask.dart';
 import '../add_new_user/views_model/add_new_user.dart';
 import '../add_new_user/views_model/widget/getallusers.dart';
+import '../get all tasks/views_model/get_all_tasks.dart';
 import '../login_screen/view_model/cubit/states.dart';
 import '../new_department/views/new_department.dart';
 import '../new_department/views/widget/get_all_department.dart';
@@ -123,12 +124,24 @@ class DrawerBody extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddNewTaskBody(),
+                    builder: (context) => AddNewTaskView(),
                   ),
                 );
               },
             ),
 
+            ListTile(
+              leading: Icon(Icons.note_add),
+              title: Text('Get ALL Task'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GetAllTasksView(),
+                  ),
+                );
+              },
+            ),
 
             Divider(), // Add a divider line
             ListTile(

@@ -65,7 +65,9 @@ class LoginScreenBody extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
-                    Text('Welcome Back!', style: GoogleFonts.roboto(fontSize: 24, fontWeight: FontWeight.bold)),
+                    Text('Welcome Back!',
+                        style: GoogleFonts.roboto(fontSize: 24, fontWeight: FontWeight.bold)
+                    ),
                     SizedBox(height: 20.h),
                     Text(
                       'Login to access your assigned tasks and personal overview',
@@ -111,8 +113,8 @@ class LoginScreenBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        emailController.text = "a@a.com";
-                        passwordController.text = "password";
+                        // emailController.text = "a@a.com";
+                        // passwordController.text = "password";
                         if (formKey.currentState!.validate()) {
                           isvisible = true;
                           CubitTask.get(context).login(

@@ -12,6 +12,7 @@ import 'package:tasks_app_errasoft/screens/new_department/views/widget/get_all_d
 
 import '../../../../core/cache_helper.dart';
 import '../../../../core/model/model_login.dart';
+import '../../../getemployee/get_employee.dart';
 import '../../../new_department/views/widget/new_department_body.dart';
 
 
@@ -50,7 +51,7 @@ class CubitTask extends Cubit<TaskStates> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Home_screen(),
+            builder: (context) => GetAllUsersView(),
           ),
         );
       }
@@ -58,7 +59,7 @@ class CubitTask extends Cubit<TaskStates> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => GetAllUsersView(),
+            builder: (context) =>GetEmployessDepartment(),
           ),
         );
       }

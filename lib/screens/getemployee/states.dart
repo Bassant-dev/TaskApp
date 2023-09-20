@@ -1,0 +1,6 @@
+abstract class GetEmployeesDepartmentState {}
+
+class GetEmployeesDepartmentInitial extends GetEmployeesDepartmentState {}
+class GetEmployeesDepartmentLoading extends GetEmployeesDepartmentState {}
+class GetEmployeesDepartmentSuccess extends GetEmployeesDepartmentState {}
+class GetEmployeesDepartmentFailure extends GetEmployeesDepartmentState {}

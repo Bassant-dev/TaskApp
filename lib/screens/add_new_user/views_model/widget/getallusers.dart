@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tasks_app_errasoft/screens/addNewTask/view_model/widget/addnewtaskbody.dart';
 
+import '../../../Home_Screen/drawer.dart';
 import '../../../addNewTask/view_model/addnewtask.dart';
 import '../../../update_user_details/views_model/update_user_details.dart';
 import '../../../update_user_details/views_model/widget/update_user_details_body.dart';
@@ -15,6 +16,7 @@ class GetAllUsersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(userName: '',),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Users'),

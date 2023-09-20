@@ -37,16 +37,16 @@ class CubitUpdateDep extends Cubit<UpdateDepStates > {
   }
   void deleteDepartment(int ?departmentId){
     emit(DeleteDepLoadingState());
-    DioHelper.postData(
+    DioHelper.deleteData(
       url: "/department/delete/$departmentId",
-      data: {
-      },
+
       token: CacheHelper.getData(key: "token"),
     ).then((value) {
       print(value);
       emit(DeleteDepSuccessState());
     }).catchError((errror){
-      if(errror is DioError && errror.response?.statusCode==401){
+      print(errror);
+      if(errror is DioError && errror.response?.statusCode==422){
         final e = errror.response?.data;
         final m = e["message"];
         print(e);
