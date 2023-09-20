@@ -9,12 +9,13 @@ import 'package:tasks_app_errasoft/screens/new_department/view_model/cubit/state
 
 import '../../../../../core/component/component.dart';
 import '../../../../core/cache_helper.dart';
+import '../../../new_department/views/widget/get_all_department.dart';
 import '../../view_model/cubit/cubit.dart';
 import '../../view_model/cubit/state.dart';
 
 
-class  UpdateUserDepBody extends StatelessWidget {
-  UpdateUserDepBody({Key? key}) : super(key: key);
+class UpdateUserDepBody  extends StatelessWidget {
+  UpdateUserDepBody({Key? key, required this.id}) : super(key: key);
 
   bool isvisible = false;
   var nameController = TextEditingController();
@@ -24,20 +25,24 @@ class  UpdateUserDepBody extends StatelessWidget {
 
   var formKey = GlobalKey<FormState>();
 
-
+  int id;
 
   @override
   Widget build(BuildContext context) {
+    print(id);
     print(CacheHelper.getData(key: "token"));
     return BlocConsumer<CubitUpdateDep,  UpdateDepStates>(
       listener: (context, state) {
       if(state is UpdateDepSuccessState){
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text("Upadate Successfully"),
             duration: Duration(seconds: 2), // Duration for which the toast will be displayed
           ),
-        );}
+        );
+
+      }
 
       },
       builder: (context, state) {
@@ -76,7 +81,7 @@ class  UpdateUserDepBody extends StatelessWidget {
                     SizedBox(height: 20.h),
                     ElevatedButton(
                       onPressed: () async {
-                        CubitUpdateDep.get(context).updateDepartment(name: nameController.text,8);
+                        CubitUpdateDep.get(context).updateDepartment(name: nameController.text,id);
                       },
                       style: ElevatedButton.styleFrom(
                         primary: HexColor('#5A55CA'),

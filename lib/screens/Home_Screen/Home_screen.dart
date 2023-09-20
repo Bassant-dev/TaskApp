@@ -1,10 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tasks_app_errasoft/screens/Home_Screen/screen_tasks.dart';
-
-import '../../core/cache_helper.dart';
-
 import 'drawer.dart';
 
 class Home_screen extends StatelessWidget {
@@ -12,9 +7,8 @@ class Home_screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(CacheHelper.getData(key: "token"));
     return Scaffold(
-      drawer: CustomDrawer(),
+      drawer: CustomDrawer(userName: '',),
       appBar: AppBar(
         leading: Builder(
           builder: (context) {
@@ -26,174 +20,103 @@ class Home_screen extends StatelessWidget {
             );
           },
         ),
-
-        title: Row(
+        title: Column(
           children: [
-             Column(
-              children: [
-                Text('Today',style: TextStyle(fontSize: 16.sp),),
-                SizedBox(height: 2,),
-                Text('11/9/2023',style: TextStyle(fontSize: 12.sp,color: Colors.grey),),
-              ],
-            ),
-            SizedBox(width: 100),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    print('Employee tapped');
-                  },
-                  child: Text(
-                    'Employee',
-                    style: TextStyle(fontSize: 10.0.sp),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    // Handle the tap for 'department'
-                    print('Department tapped');
-                  },
-                  child: Text(
-                    'Department',
-                    style: TextStyle(fontSize: 10.0.sp),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    // Handle the tap for 'task'
-                    print('Task tapped');
-                  },
-                  child: Text(
-                    'Task',
-                    style: TextStyle(fontSize: 10.0.sp),
-                  ),
-                ),
-              ],
-            ),
+            Text('Today', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            SizedBox(height: 4),
+            Text('11/9/2023', style: TextStyle(fontSize: 16, color: Colors.grey)),
           ],
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Icon(Icons.add),
+            padding: const EdgeInsets.all(16.0),
+            child: Icon(Icons.add, size: 28),
           ),
         ],
       ),
       body: ListView(
         children: [
+          SizedBox(height: 20),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton.icon(
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black, // Change the button color
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0),
+                      borderRadius: BorderRadius.circular(8),
                     ),
+                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                   ),
                   onPressed: () {
                     print('Button 1 pressed');
                   },
-                  icon: Icon(Icons.person, color: Colors.black),
-                  label: Text(
-                    'USERS',
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  icon: Icon(Icons.person, color: Colors.white),
+                  label: Text('USERS', style: TextStyle(color: Colors.white, fontSize: 18)),
                 ),
-                SizedBox(width: 14.sp,),
                 ElevatedButton.icon(
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black, // Change the button color
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0),
+                      borderRadius: BorderRadius.circular(8),
                     ),
+                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                   ),
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ScreenTask(), // Replace 'Home_screen' with the actual screen you want to navigate to
+                        builder: (context) => ScreenTask(),
                       ),
                     );
                   },
-                  icon: Icon(Icons.task, color: Colors.black),
-                  label: Text(
-                    'TASKS',
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  icon: Icon(Icons.task, color: Colors.white),
+                  label: Text('TASKS', style: TextStyle(color: Colors.white, fontSize: 18)),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 5,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('department name'),
-          ),
-          GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(), // Disable scrolling for the GridView
-            padding: EdgeInsets.all(10),
-            itemCount: 4,
-            itemBuilder: (context, index) {
-              return EmployeeCard(
-                title: 'ADMIN',
-                userEmail: 'admin@example.com',
-                userPassword: 'admin123',
-              );
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('department name'),
-          ),
-          GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.all(10),
-            itemCount: 4,
-            itemBuilder: (context, index) {
-              return EmployeeCard(
-                title: 'ADMIN',
-                userEmail: 'admin@example.com',
-                userPassword: 'admin123',
-              );
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('department name'),
-          ),
-          GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.all(10),
-            itemCount: 4,
-            itemBuilder: (context, index) {
-              return EmployeeCard(
-                title: 'ADMIN',
-                userEmail: 'admin@example.com',
-                userPassword: 'admin123',
-              );
-            },
-          ),
+          SizedBox(height: 20),
+          _buildDepartmentSection('Department Name 1', context),
+          _buildDepartmentSection('Department Name 2', context),
+          _buildDepartmentSection('Department Name 3', context),
         ],
       ),
+    );
+  }
+
+  Widget _buildDepartmentSection(String departmentName, BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            departmentName,
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+        ),
+        GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+          ),
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.all(16),
+          itemCount: 4,
+          itemBuilder: (context, index) {
+            return EmployeeCard(
+              title: 'ADMIN',
+              userEmail: 'admin@example.com',
+              userPassword: 'admin123',
+            );
+          },
+        ),
+      ],
     );
   }
 }
@@ -213,27 +136,27 @@ class EmployeeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 4.0,
-      child: SingleChildScrollView(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ListTile(
-              title: Text(
-                'Employee name',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              subtitle: Text(title!,style: TextStyle(color: Colors.grey),),
+            Text(
+              'Employee Name',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            ListTile(
-              title: Text(
-                'user name',
-                style: TextStyle(color: Colors.grey),
-              ),
+            SizedBox(height: 8),
+            Text(
+              title!,
+              style: TextStyle(color: Colors.grey, fontSize: 16),
             ),
-            ListTile(
-              title: Text(
-                'user name',
-                style: TextStyle(color: Colors.grey),
-              ),
+            SizedBox(height: 8),
+            Text(
+              'User Name',
+              style: TextStyle(color: Colors.grey, fontSize: 16),
             ),
           ],
         ),

@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_errasoft/core/api.dart';
 import 'package:tasks_app_errasoft/core/dio_helper.dart';
+import 'package:tasks_app_errasoft/screens/Home_Screen/Home_screen.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.dart';
 
 import '../../../../core/cache_helper.dart';
 import '../../../../core/model/model_login.dart';
+import '../../../new_department/views/widget/new_department_body.dart';
 
 
 class CubitTask extends Cubit<TaskStates> {
@@ -25,44 +27,55 @@ class CubitTask extends Cubit<TaskStates> {
     ischeck = value;
     emit(CheckSuccess());
   }
-  void login(String email, String password) async {
+// Modify the login function to accept the context parameter
+  void login(BuildContext context, String email, String password) async {
     emit(LoginLoadingState());
 
-
     dio.post(
-
-        ApiConst.login,
-        data: {
-          'email': email,
-          'password': password,
+      ApiConst.login,
+      data: {
+        'email': email,
+        'password': password,
+      },
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
         },
-        options: Options(
-          headers: {
-            'Accept': 'application/json',
-          },
-        ),
-
-      ).then((value) {
-        print(value.data['data']['token']);
-        print(value);
-        CacheHelper.saveData(key: 'token', value:value.data['data']['token']);
-        print("bassant");
-        print(CacheHelper.getData(key: "token"));
-
-        print("bassant");
-        emit(LoginSuccessState(''));
-      }).catchError((error) {
-        print(error.toString());
-        if (Dio is DioException) {
-          emit(LoginErrorState());
-        }
-      });
-
-
-
-
-
+      ),
+    ).then((value) {
+      print(value.data['data']['token']);
+      if (value.data['data']['user_type'] == 'admin') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Home_screen(),
+          ),
+        );
+      }
+      else{
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => NewDepBody(),
+          ),
+        );
+      }
+      print(value);
+      CacheHelper.saveData(key: 'token', value: value.data['data']['token']);
+      print("bassant");
+      print(CacheHelper.getData(key: "token"));
+      print("bassant");
+      emit(LoginSuccessState(''));
+    }).catchError((error) {
+      print(error.toString());
+      if (error is DioError) {
+        emit(LoginErrorState());
+      }
+    });
   }
+
+// Inside your build method, pass the context to the login function
+
   void logout()async {
       print("basanttttt");
       await DioHelper.postData(

@@ -9,6 +9,7 @@ import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.
 
 import '../../../../../core/component/component.dart';
 import '../../../../core/cache_helper.dart';
+import '../../../new_department/views/widget/new_department_body.dart';
 import '../../view_model/cubit/cubit.dart';
 
 class LoginScreenBody extends StatelessWidget {
@@ -17,6 +18,7 @@ class LoginScreenBody extends StatelessWidget {
   bool isvisible = false;
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
   Future<void> storeTokenInSharedPreferences(String token) async {
     //SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -25,20 +27,34 @@ class LoginScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     print(CacheHelper.getData(key: "token"));
     return BlocConsumer<CubitTask, TaskStates>(
-      listener: (context, state) {
-        if (state is LoginSuccessState) {
-          final token = state.token;
-          // storeTokenInSharedPreferences(token!);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const Home_screen (),
-            ),
-          );
-        }
-      },
+        listener: (context, state) async {
+
+          if (state is LoginSuccessState) {
+            // final type= await CacheHelper.saveData(key: 'token', value: 'admin'); // Save the 'admin' token
+            // final savedToken = await CacheHelper.getData(key: 'token'); // Retrieve the token
+
+            // if (savedToken == 'admin') {
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const Home_screen(),
+            //     ),
+            //   );
+            // }
+            //  if (type){
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) =>  NewDepBody(),
+            //     ),
+            //   );
+            // }
+          }
+        },
+
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(),
@@ -99,7 +115,11 @@ class LoginScreenBody extends StatelessWidget {
                         passwordController.text = "password";
                         if (formKey.currentState!.validate()) {
                           isvisible = true;
-                          CubitTask.get(context).login(emailController.text, passwordController.text);
+                          CubitTask.get(context).login(
+                            context, // Pass the context here
+                            emailController.text,
+                            passwordController.text,
+                          );
                         }
                       },
                       style: ElevatedButton.styleFrom(

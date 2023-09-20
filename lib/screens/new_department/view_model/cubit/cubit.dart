@@ -11,6 +11,8 @@ import 'package:tasks_app_errasoft/core/dio_helper.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.dart';
 import 'package:tasks_app_errasoft/screens/new_department/view_model/cubit/states.dart';
 
+import '../../../../core/model/model_login.dart';
+
 
 class CubitDep extends Cubit< DepStates > {
   CubitDep() : super(InitialState());
@@ -45,6 +47,26 @@ class CubitDep extends Cubit< DepStates > {
 
 
 
+
+  }
+  List<dynamic>users=[];
+  Future getAllDepartments()async
+  {
+    users=[];
+    emit(GetAllDepStateLoading());
+    try {
+      Response  data=await  DioHelper.getData(url: '/department/index',token: CacheHelper.getData(key:'token'));
+      data.data['data'].forEach((item){
+        users.add(DepartmentDataModel.fromJson(item));
+      });
+      print(users.length);
+      print("b + m");
+      emit(GetAllDepStateSuccess());
+
+    } on Exception catch (e) {
+      emit(GetAllDeprStateFail());
+
+    }
 
   }
 

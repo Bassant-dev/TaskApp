@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context)=> CubitTask()),
-        BlocProvider(create: (context)=> CubitDep()),
+        BlocProvider(create: (context)=> CubitDep()..getAllDepartments()),
         BlocProvider(create: (context)=> CubitNewUser()..getAllUsers()),
         BlocProvider(create: (context)=>  CubitUpdateDep()),
         BlocProvider(create: (context)=> CubitUpdateUserDetails()),
@@ -48,6 +48,7 @@ class MyApp extends StatelessWidget {
       ],
       child: ScreenUtilInit(
         child: MaterialApp(
+
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(

@@ -69,6 +69,12 @@ class GetAllUsersView extends StatelessWidget {
                               child: Text('Update User'),
                             ),
                             SizedBox(width: 10.w),
+                            ElevatedButton(
+                              onPressed: () {
+
+                              },
+                              child: Text('Delete User'),
+                            ),
                           ],
                         ),
                       ],
