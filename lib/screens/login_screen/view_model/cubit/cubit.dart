@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tasks_app_errasoft/core/api.dart';
 import 'package:tasks_app_errasoft/core/dio_helper.dart';
 import 'package:tasks_app_errasoft/screens/Home_Screen/Home_screen.dart';
+import 'package:tasks_app_errasoft/screens/add_new_user/views_model/widget/getallusers.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.dart';
 import 'package:tasks_app_errasoft/screens/new_department/views/widget/get_all_department.dart';
 
@@ -57,7 +58,7 @@ class CubitTask extends Cubit<TaskStates> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => GetAllDepView(),
+            builder: (context) => GetAllUsersView(),
           ),
         );
       }
