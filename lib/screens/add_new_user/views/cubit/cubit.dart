@@ -88,6 +88,26 @@ class CubitNewUser extends Cubit< AddNewUserStates > {
     }
 
   }
+  void deleteUser(int ?departmentId){
+    emit(DeleteUserLoadingState ());
+    DioHelper.deleteData(
+      url: "/department/delete/$departmentId",
+
+      token: CacheHelper.getData(key: "token"),
+    ).then((value) {
+      print(value);
+      emit(DeleteUserSuccessState());
+    }).catchError((errror){
+      print(errror);
+      if(errror is DioError && errror.response?.statusCode==404){
+        final e = errror.response?.data;
+        final m = e["message"];
+        print(e);
+        print(m);
+      }
+      emit(DeleteUserErrorState());
+    });
+  }
 
 
 }

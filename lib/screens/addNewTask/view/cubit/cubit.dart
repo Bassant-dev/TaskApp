@@ -61,6 +61,8 @@
 //
 // }
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:tasks_app_errasoft/screens/addNewTask/view/cubit/states.dart';
 
@@ -70,8 +72,10 @@ import '../../view_model/task_model.dart';
 
 class AddNewTaskCubit extends Cubit<AddNewTaskState> {
   AddNewTaskCubit() : super(AddNewTaskInitial());
+  static AddNewTaskCubit get(context) => BlocProvider.of<AddNewTaskCubit>(context);
   addNewTask(CreateTaskModel model)async
   {
+    emit(AddNewTaskLoading());
     try {
       await DioHelper.postData(data:{
         'name':model.name,
@@ -85,8 +89,15 @@ class AddNewTaskCubit extends Cubit<AddNewTaskState> {
       print('add new task to employee successfully');
       emit(AddNewTaskSuccess());
     } on Exception catch (e) {
+      print(e);
+      if(e is DioError && e.response?.statusCode==422){
+        final error = e.response?.data;
+        final m = error["message"];
+        print(error);
+        print(m);
+      }
       emit(AddNewTaskFailure());
-      // TODO
+
     }
   }
   dynamic valueChoose;

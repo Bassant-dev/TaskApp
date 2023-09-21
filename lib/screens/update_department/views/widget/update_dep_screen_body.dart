@@ -55,7 +55,8 @@ class UpdateUserDepBody  extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
-                    Text(' Update Department!', style: GoogleFonts.roboto(fontSize: 24, fontWeight: FontWeight.bold)),
+                    Text(' Update Department!',
+                        style: GoogleFonts.roboto(fontSize: 24, fontWeight: FontWeight.bold)),
                     SizedBox(height: 20.h),
                     Text(
                       'Update  department details and assign a new manager to continue work!',

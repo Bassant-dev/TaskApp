@@ -18,3 +18,8 @@ class GetAllUserStateSuccess extends  AddNewUserStates
 {}
 class  GetAllUserStateFail extends  AddNewUserStates
 {}
+class  DeleteUserSuccessState extends AddNewUserStates
+{}
+class DeleteUserErrorState extends  AddNewUserStates
+{}
+class DeleteUserLoadingState extends  AddNewUserStates{}

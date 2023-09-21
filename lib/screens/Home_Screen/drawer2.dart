@@ -4,6 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:tasks_app_errasoft/screens/addNewTask/view_model/widget/addnewtaskbody.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/login_screen/views/login_screen.dart';
+import '../get_all_employee/getallemployee.dart';
 import '../add_new_user/views_model/add_new_user.dart';
 import '../add_new_user/views_model/widget/getallusers.dart';
 import '../get all tasks/views_model/get_all_tasks.dart';
@@ -12,10 +13,10 @@ import '../new_department/views/new_department.dart';
 import '../new_department/views/widget/get_all_department.dart';
 
 
-class CustomDrawer extends StatelessWidget {
+class CustomDrawer2 extends StatelessWidget {
   final String userName;
 
-  const CustomDrawer({Key? key, required this.userName}) : super(key: key);
+  const CustomDrawer2({Key? key, required this.userName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -65,44 +66,6 @@ class DrawerBody extends StatelessWidget {
                 color: HexColor('#5A55CA'),
               ),
             ),
-
-            ListTile(
-              leading: Icon(Icons.add_box),
-              title: Text('Add New Department'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NewDep(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.person_add),
-              title: Text('Add New User'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddNewUser(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.people),
-              title: Text('Get All Users'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => GetAllUsersView(),
-                  ),
-                );
-              },
-            ),
-
             ListTile(
               leading: Icon(Icons.note_add),
               title: Text('Add New Task'),
@@ -123,6 +86,18 @@ class DrawerBody extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => GetAllTasksView(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Get ALL Employees'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GetAllEmployee(),
                   ),
                 );
               },

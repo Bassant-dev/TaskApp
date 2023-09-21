@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tasks_app_errasoft/screens/addNewTask/view_model/widget/addnewtaskbody.dart';
 
+import '../../../Home_Screen/drawer.dart';
 import '../../../addNewTask/view_model/addnewtask.dart';
 import '../../../update_department/view_model/cubit/cubit.dart';
 import '../../../update_department/views/widget/update_dep_screen_body.dart';
@@ -17,6 +18,7 @@ class GetAllDepView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(userName: 'Admin',),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Department'),

@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tasks_app_errasoft/screens/addNewTask/view_model/widget/addnewtaskbody.dart';
 
-import '../../../Home_Screen/drawer.dart';
-import '../../../addNewTask/view_model/addnewtask.dart';
-import '../../../update_user_details/views_model/update_user_details.dart';
-import '../../../update_user_details/views_model/widget/update_user_details_body.dart';
-import '../../views/cubit/cubit.dart';
-import '../../views/cubit/state.dart';
+import 'cubitemplyee.dart';
+import 'statesemployee.dart';
 
-class GetAllUsersView extends StatelessWidget {
-  const GetAllUsersView({Key? key}) : super(key: key);
+
+class GetAllEmployee extends StatelessWidget {
+  const GetAllEmployee({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +15,18 @@ class GetAllUsersView extends StatelessWidget {
 
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Users'),
+        title: const Text('Employees'),
       ),
-      body: BlocConsumer<CubitNewUser, AddNewUserStates>(
+      body: BlocConsumer<GetAllEmployeesCubit, GetAllEmployeesState>(
         listener: (context, state) {},
         builder: (context, state) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             child: ListView.builder(
-              itemCount: CubitNewUser.get(context).users.length,
+              itemCount: GetAllEmployeesCubit.get(context).employees.length,
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                final user = CubitNewUser.get(context).users[index];
+                final user = GetAllEmployeesCubit.get(context).employees[index];
                 return Card(
                   elevation: 3.0,
                   margin: EdgeInsets.only(bottom: 10.h),
@@ -60,23 +56,18 @@ class GetAllUsersView extends StatelessWidget {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        UpdateUserDetailsBody(id: user.id),
-                                  ),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) =>
+                                //         UpdateUserDetailsBody(id: user.id),
+                                //   ),
+                                // );
                               },
-                              child: Text('Update User'),
+                              child: Text('Update Task'),
                             ),
                             SizedBox(width: 10.w),
-                            ElevatedButton(
-                              onPressed: () {
-                                CubitNewUser.get(context).deleteUser(user.id);
-                              },
-                              child: Text('Delete User'),
-                            ),
+
                           ],
                         ),
                       ],

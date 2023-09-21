@@ -50,15 +50,18 @@ class CreatorModel {
 
 class EmployeeModel {
   final String name;
+  final String id;
   final String userType;
   final String email;
-  EmployeeModel({required this.name, required this.userType,required this.email});
+  EmployeeModel({required this.name, required this.userType,required this.email,required this.id});
 
   factory EmployeeModel.fromJson(Map<String, dynamic> json) {
-    return EmployeeModel(
+    return EmployeeModel(id: json['id'].toString(),
         name: json['name'],
         userType: json['user_type'],
         email: json['email']
     );
   }
 }
+
+

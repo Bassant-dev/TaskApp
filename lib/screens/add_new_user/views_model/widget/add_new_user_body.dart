@@ -41,6 +41,14 @@ class AddNewUserBody extends StatelessWidget {
           );
 
         }
+        if(state is  DeleteUserSuccessState){
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Delete Successfully"),
+              duration: Duration(seconds: 2), // Duration for which the toast will be displayed
+            ),
+          );
+        }
 
       },
       builder: (context, state) {

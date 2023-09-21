@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tasks_app_errasoft/core/bloc_observer.dart';
-import 'package:tasks_app_errasoft/screens/Home_Screen/Home_screen.dart';
+import 'package:tasks_app_errasoft/screens/Home_Screen/view/Home_screen.dart';
 import 'package:tasks_app_errasoft/screens/Home_Screen/drawer.dart';
 import 'package:tasks_app_errasoft/screens/addNewTask/view/cubit/cubit.dart';
-import 'package:tasks_app_errasoft/screens/addNewTask/view/cubit/cubitemplyee.dart';
-import 'package:tasks_app_errasoft/screens/addNewTask/view/cubit/departmenycubit.dart';
+import 'package:tasks_app_errasoft/screens/get_all_employee/cubitemplyee.dart';
+
 import 'package:tasks_app_errasoft/screens/add_new_user/views/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/get%20all%20tasks/views/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/getemployee/cubit.dart';
@@ -17,6 +17,7 @@ import 'package:tasks_app_errasoft/screens/login_screen/view_model/cubit/states.
 import 'package:tasks_app_errasoft/screens/login_screen/views/login_screen.dart';
 import 'package:tasks_app_errasoft/screens/new_department/view_model/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/update_department/view_model/cubit/cubit.dart';
+import 'package:tasks_app_errasoft/screens/update_task/cubit_task.dart';
 import 'package:tasks_app_errasoft/screens/update_user_details/views/cubit/cubit.dart';
 
 import 'core/cache_helper.dart';
@@ -46,10 +47,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=> CubitNewUser()..getAllUsers()),
         BlocProvider(create: (context)=>  CubitUpdateDep()),
         BlocProvider(create: (context)=> CubitUpdateUserDetails()),
-        BlocProvider(create: (context)=> GetAllTasksCubit ()),
+        BlocProvider(create: (context)=> GetAllTasksCubit ()..getAllTasks()),
         BlocProvider(create: (context)=>  AddNewTaskCubit()),
-        BlocProvider(create: (context)=>  GetAllDepartmentsCubit()),
-        BlocProvider(create: (context)=>  GetAllEmployeesCubit()),
+
+        BlocProvider(create: (context)=>   UpdateTaskCubit()),
+        BlocProvider(create: (context)=>  GetAllEmployeesCubit()..getAllEmployees()),
         BlocProvider(create: (context)=>   GetEmployeesDepartmentCubit()..getAllEmployeesDepartment()),
 
 

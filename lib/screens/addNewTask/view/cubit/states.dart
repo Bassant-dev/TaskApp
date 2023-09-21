@@ -12,6 +12,7 @@
 abstract class AddNewTaskState {}
 
 class AddNewTaskInitial extends AddNewTaskState {}
+class AddNewTaskLoading extends AddNewTaskState {}
 class AddNewTaskSuccess extends AddNewTaskState {}
 class AddNewTaskFailure extends AddNewTaskState {}
 class ChangedAssignedEmployeeSuccess extends AddNewTaskState {}
