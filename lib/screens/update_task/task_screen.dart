@@ -37,8 +37,8 @@ class UpdateTaskView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Update Task!',
-                      style: GoogleFonts.roboto(fontSize: 24, fontWeight: FontWeight.bold)),
+                            'Update Task!',
+                            style: GoogleFonts.roboto(fontSize: 24, fontWeight: FontWeight.bold)),
 
                         SizedBox(
                           height: 20.h,
@@ -137,6 +137,8 @@ class UpdateTaskView extends StatelessWidget {
                                             const SnackBar(
                                                 content:
                                                 Text('updated successfully')));
+                                        GetAllTasksCubit.get(context).getAllTasks();
+                                        Navigator.pop(context);
                                       } catch (error) {
                                         ScaffoldMessenger.of(context).showSnackBar(
                                             const SnackBar(
@@ -150,17 +152,17 @@ class UpdateTaskView extends StatelessWidget {
 
                                     }
                                   },
-                              style: ElevatedButton.styleFrom(
-                              primary: HexColor('#5A55CA'),
-                              shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(0),
-                              ),
-                              minimumSize: const Size(312, 48),
-                              ),
-                              child: Text(
-                              'Update',
-                              style: GoogleFonts.roboto(fontSize: 14.sp, color: Colors.white),
-                              ));
+                                  style: ElevatedButton.styleFrom(
+                                    primary: HexColor('#5A55CA'),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(0),
+                                    ),
+                                    minimumSize: const Size(312, 48),
+                                  ),
+                                  child: Text(
+                                    'Update',
+                                    style: GoogleFonts.roboto(fontSize: 14.sp, color: Colors.white),
+                                  ));
                             },
                           ),
                         )

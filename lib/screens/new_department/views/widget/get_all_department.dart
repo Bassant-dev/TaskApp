@@ -6,6 +6,7 @@ import 'package:tasks_app_errasoft/screens/addNewTask/view_model/widget/addnewta
 import '../../../Home_Screen/drawer.dart';
 import '../../../addNewTask/view_model/addnewtask.dart';
 import '../../../update_department/view_model/cubit/cubit.dart';
+import '../../../update_department/view_model/cubit/state.dart';
 import '../../../update_department/views/widget/update_dep_screen_body.dart';
 import '../../../update_user_details/views_model/update_user_details.dart';
 import '../../../update_user_details/views_model/widget/update_user_details_body.dart';
@@ -25,9 +26,12 @@ class GetAllDepView extends StatelessWidget {
       ),
 
       body: BlocConsumer<CubitDep, DepStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+
+
+        },
         builder: (context, state) {
-          if (state is GetAllDepStateSuccess) {
+
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
               child: ListView.builder(
@@ -64,13 +68,15 @@ class GetAllDepView extends StatelessWidget {
                                           UpdateUserDepBody(id: user.id),
                                     ),
                                   );
+                                  //GetAllDepView();
                                 },
                                 child: Text('Update Dep'),
                               ),
                               SizedBox(width: 10.w),
                               ElevatedButton(
                                 onPressed: () {
-                                  CubitUpdateDep.get(context).deleteDepartment(user.id);
+                                  CubitUpdateDep.get(context).deleteDepartment(user.id,context);
+
                                 },
                                 child: Text('Delete Dep'),
                               ),
@@ -83,13 +89,7 @@ class GetAllDepView extends StatelessWidget {
                 },
               ),
             );
-          } else {
-            // Handle other states here, such as loading or error states.
-            // You can return a loading indicator or an error message as needed.
-            return Center(
-              child: CircularProgressIndicator(), // Example: Loading indicator
-            );
-          }
+
         },
       ),
 

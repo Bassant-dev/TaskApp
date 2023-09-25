@@ -73,7 +73,8 @@ class GetAllUsersView extends StatelessWidget {
                             SizedBox(width: 10.w),
                             ElevatedButton(
                               onPressed: () {
-                                CubitNewUser.get(context).deleteUser(user.id);
+                                CubitNewUser.get(context).deleteUser(user.id,context);
+
                               },
                               child: Text('Delete User'),
                             ),

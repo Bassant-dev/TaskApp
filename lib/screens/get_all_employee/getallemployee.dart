@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../get all tasks/views/cubit/cubit.dart';
+import '../update_task/modeltask.dart';
+import '../update_task/task_screen.dart';
 import 'cubitemplyee.dart';
 import 'statesemployee.dart';
 
@@ -56,13 +59,13 @@ class GetAllEmployee extends StatelessWidget {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) =>
-                                //         UpdateUserDetailsBody(id: user.id),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                    UpdateTaskView(employeeId:' ${user.id}' ,taskId:GetAllTasksCubit.get(context).tasks[index].id),
+                                  ),
+                                );
                               },
                               child: Text('Update Task'),
                             ),

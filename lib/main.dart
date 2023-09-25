@@ -8,7 +8,6 @@ import 'package:tasks_app_errasoft/screens/Home_Screen/view/Home_screen.dart';
 import 'package:tasks_app_errasoft/screens/Home_Screen/drawer.dart';
 import 'package:tasks_app_errasoft/screens/addNewTask/view/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/get_all_employee/cubitemplyee.dart';
-
 import 'package:tasks_app_errasoft/screens/add_new_user/views/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/get%20all%20tasks/views/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/getemployee/cubit.dart';
@@ -19,12 +18,8 @@ import 'package:tasks_app_errasoft/screens/new_department/view_model/cubit/cubit
 import 'package:tasks_app_errasoft/screens/update_department/view_model/cubit/cubit.dart';
 import 'package:tasks_app_errasoft/screens/update_task/cubit_task.dart';
 import 'package:tasks_app_errasoft/screens/update_user_details/views/cubit/cubit.dart';
-
 import 'core/cache_helper.dart';
 import 'core/dio_helper.dart';
-
-
-
 void main()  async{
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();

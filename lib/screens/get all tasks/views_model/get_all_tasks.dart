@@ -81,7 +81,7 @@ class GetAllTasksView extends StatelessWidget {
           } else if (state is GetAllTasksLoading) {
             return Center(
               child: CircularProgressIndicator(
-                color: HexColor('#5A55CA'), // Use the accent color for the loading indicator
+                color: HexColor('#5A55CA'),
               ),
             );
           } else {

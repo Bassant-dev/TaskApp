@@ -36,10 +36,12 @@ print(id);
         if(state is UpdateUserDetailsSuccessState){
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text("Upadate Successfully"),
-              duration: Duration(seconds: 2), // Duration for which the toast will be displayed
+              content: Text("Update Successfully"),
+              duration: Duration(seconds: 2),
             ),
           );}
+        CubitNewUser.get(context).getAllUsers();
+        Navigator.pop(context);
       },
       builder: (context, state) {
         return Scaffold(

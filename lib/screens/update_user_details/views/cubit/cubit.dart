@@ -42,6 +42,11 @@ DioHelper.postData(
       'user_type':userType,
     }).then((value) {
   emit(UpdateUserDetailsSuccessState());
+
+
+
+
+
 }).catchError((errror){
   emit(UpdateUserDetailsErrorState());
 });

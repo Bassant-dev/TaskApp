@@ -26,6 +26,7 @@ class GetAllTasksCubit extends Cubit<GetAllTasksState> {
   updates.add(UpdateTaskModel.fromJson(item));
   tasks.add(TasksModel.fromJson(item));
 
+
   });
   print('tasks get Successfully');
   emit(GetAllTasksSuccess());

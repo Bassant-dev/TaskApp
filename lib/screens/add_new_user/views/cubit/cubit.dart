@@ -82,29 +82,44 @@ class CubitNewUser extends Cubit< AddNewUserStates > {
       print("b + m");
       emit(GetAllUserStateSuccess());
 
+
+
     } on Exception catch (e) {
       emit(GetAllUserStateFail());
 
     }
 
   }
-  void deleteUser(int ?departmentId){
+  void deleteUser(int ?departmentId,context){
     emit(DeleteUserLoadingState ());
     DioHelper.deleteData(
       url: "/department/delete/$departmentId",
 
-      token: CacheHelper.getData(key: "token"),
+      token: CacheHelper.getData(key:"token"),
     ).then((value) {
       print(value);
       emit(DeleteUserSuccessState());
+
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Deleted Successfully"),
+            duration: Duration(seconds: 2),
+          ));
+      CubitNewUser.get(context).getAllUsers();
+
     }).catchError((errror){
       print(errror);
-      if(errror is DioError && errror.response?.statusCode==404){
+      if(errror is DioError && errror.response?.statusCode==422){
         final e = errror.response?.data;
         final m = e["message"];
         print(e);
         print(m);
       }
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("cannot delete user because have a task"),
+            duration: Duration(seconds: 2), // Duration for which the toast will be displayed
+          ));
       emit(DeleteUserErrorState());
     });
   }
